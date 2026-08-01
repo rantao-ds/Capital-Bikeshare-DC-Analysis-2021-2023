@@ -1,37 +1,47 @@
-# Capital-Bikeshare-DC-Analysis(2021-2023)
-Exploratory and spatial analysis of Capital Bikeshare ridership patterns in Washington D.C. (2021–2023) using R and ArcGIS.
+# Capital-Bikeshare-Ridership-Analysis(2021-2023)
+An exploratory, spatial, and statistical analysis of Capital Bikeshare ridership patterns in Washington, D.C., using R and ArcGIS.
 
 ## Why This Project 
-DC is honestly my favorite U.S. city. I've visited two years in a row for the Annual Cherry Blossom Festival, and what struck me every time wasn't just the scenery. Having lived in the U.S. for a decade, it was my first time being able to take the metro directly to my hotel with suitcases and explore the city and even the neighborhoods beyond without ever calling an Uber. I was also impressed by how the transportation system creates strong economic circulation connecting Virginia (Silver, Yellow & Orange Lines) and Maryland (Red & Green Lines) with the capital. So my first project looked at Capital Bikeshare, a service I noticed but never got to try during my visits to DC.
+Washington, D.C., is honestly my favorite U.S. city. I visited the city for the National Cherry Blossom Festival two years in a row, and what impressed me was not only the scenery but also its transit accessibility. After living in the United States for a decade, D.C. was the first city where I could take the Metro directly to my hotel with my luggage and explore the city and surrounding neighborhoods without relying on Uber.
+
+I was also impressed by how the transportation system connects Virginia through the Silver, Yellow, and Orange Lines and Maryland through the Red and Green Lines, supporting travel and economic activity across the region. For my first portfolio project, I chose to analyze Capital Bikeshare, a service I noticed but never had the chance to try during my visits to D.C.
 
 ## Data
-The dataset is sourced from Kaggle:[Capital Bikeshare Dataset 2020/05~2024/08](https://www.kaggle.com/datasets/taweilo/capital-bikeshare-dataset-202005202408/data), consisting of four separate datasets: 
+The data were sourced from Kaggle:[Capital Bikeshare Dataset 2020/05~2024/08](https://www.kaggle.com/datasets/taweilo/capital-bikeshare-dataset-202005202408/data). The source contains four datasets:
 
   - Daily_Rent_Detail
   - Station_List
   - Usage_Frequency
   - Weather
 
-The primary dataset used in this analysis is **Daily_Rent_Detail**, which originally contained 16,086,672 observations covering May 2020 to August 2024. After removing invalid trips, including zero values, missing data, and trips exceeding 24 hours (per Capital Bikeshare's rental agreement), and filtering to three complete years from 2021 to 2023, the cleaned dataset retained 9,451,314 observations for exploratory data analysis.
+The primary dataset used in this analysis was **Daily_Rent_Detail**, which originally contained 16,086,672 trip records from May 2020 through August 2024. After removing invalid trips, including records with zero or missing values and trips lasting more than 24 hours based on Capital Bikeshare’s rental agreement, the data were restricted to the three complete years from 2021 to 2023. The final cleaned dataset contained 9,451,314 trips for exploratory data analysis.
 
-For EDA and modeling purposes, I combined the weather dataset with selected variables, including temperature, precipitation, wind speed, and cloud cover. I also created the following additional variables: duration (min), pick-up time (morning, afternoon, evening, night), return type (same-day, next-day), trip pattern (one-way, round-trip), month(Jan, Feb, etc.), weekday (Mon, Tue, etc.), weekend (True/False), and year (2021, 2022, 2023).
+For EDA and modeling, the cleaned trip data were merged with the Weather dataset using temperature, precipitation, wind speed, and cloud cover. The following variables were also created:
+- Trip duration in minutes
+- Pickup period: morning, afternoon, evening, or night
+- Return type: same-day or next-day
+- Trip pattern: one-way or round-trip
+- Month
+- Day of the week
+- Weekend status
+- Year: 2021, 2022, or 2023
 
 ## Exploratory Data Analysis (EDA)
-The EDA centers on answering the following questions:
+The EDA focuses on answering the following questions:
 
-**WHO** are the primary riders using the bike rental service?
+**WHO** are the primary users of Capital Bikeshare?
 
-**WHEN** is the most demanding time for the bike rental service?
+**WHEN** does Capital Bikeshare experience the highest demand?
 
-**WHAT** rental services do riders prefer?
+**WHAT** types of trips and rental patterns do riders prefer?
 
-**WHERE** are the most in-demand bike stations?
+**WHERE** are the most frequently used bikeshare stations?
 
-**HOW** do riders use the bike rental service?
+**HOW** do riders use the bikeshare service?
 
 
 ### Who
-Based on aggregated data from 2021 to 2023, the primary bike rental users are Capital Bikeshare members (60.5%), with a comparatively smaller portion from casual users (39.5%). Over the three years, the proportion between member and casual users remained relatively stable at approximately 60:40.
+Based on aggregated trip data from 2021 to 2023, Capital Bikeshare members accounted for the majority of rides (60.5%), while casual riders accounted for 39.5%. This distribution remained relatively stable across the three years at approximately 60:40.
 
 According to Capital Bikeshare, the annual membership costs $120 per year and provides unlimited free bike unlocks with the first 45 minutes of classic bike rental at no charge. Given the annual commitment, members are likely local residents or frequent commuters who rely on Capital Bikeshare as part of their daily routine, rather than occasional visitors. The higher ridership among members also suggests that Capital Bikeshare functions as an essential transportation tool that complements other public transit options for short distance travel among local residents and commuters.
 
@@ -232,7 +242,7 @@ Overall, trips at the top three pick-up stations on weekdays have steadily incre
 
 ### Objective
 
-For modeling purposes, this section aims to answer the following question: is bike rental usage affected by weather conditions and weekends? If so, is the relationship linear or non-linear, and how do these variables individually impact ridership? To address this, both linear and non-linear approaches were applied. Specifically, multiple linear regression was used to test linear relationships, while quadratic regression was used to examine non-linear patterns. For modeling purposes, the dataset was aggregated into a new dataset with daily trip counts grouped by date, weather conditions, and weekend status. The final modeling dataset consists of 1,095 observations (365 days × 3 years), aggregated from the 9,451,314 observations used in the EDA.
+For modeling, this section examines whether daily bikeshare ridership is associated with weather conditions and weekend status, whether weather relationships are linear or curved, and whether these effects differ between weekdays and weekends. Multiple linear regression was used as the baseline model, quadratic terms were added to examine curved patterns, and interaction terms tested whether the effects of temperature and precipitation varied by weekend status. The trip-level data were aggregated into 1,095 daily observations (365 days × 3 years) from the 9,451,314 trips used in the EDA.
 
 ### Varibles 
 
@@ -242,23 +252,29 @@ For modeling purposes, this section aims to answer the following question: is bi
 
 ### Methodology 
 
-**1. Mutiple Linear Regression** 
+**1. Multiple Linear Regression** 
 
-The first step was to run a multiple linear regression using the prepared dataset, with total_trips as the dependent variable, to examine how the independent variables impact daily ridership, whether these effects are statistically significant, and how well the selected independent variables explain the variation in trip counts.
+The first step was to estimate a multiple linear regression model using daily trip counts (total_trips) as the dependent variable. The model examined how temperature, precipitation, wind speed, cloud cover, and weekend status were associated with daily ridership, whether these relationships were statistically significant, and how much variation in trip counts was explained by the selected predictors.
 
 **2.VIF**
 
-The second step was to test for multicollinearity using VIF (Variance Inflation Factor). Multicollinearity is a common concern in multiple linear regression, particularly when independent variables are closely related. Since the four selected weather variables: temperature, precipitation, wind speed, and cloud cover, measure different aspects of weather conditions, there was a risk that some variables might be capturing similar information. The VIF test was applied to ensure that each variable contributes independently to the model.
+The second step was to assess multicollinearity using the Variance Inflation Factor (VIF). Multicollinearity can occur when independent variables are strongly related, making individual coefficient estimates unstable or difficult to interpret.
+
+Because temperature, precipitation, wind speed, and cloud cover may contain overlapping information about weather conditions, VIF values were examined to determine whether multicollinearity was a concern in the model.
 
 **3. Regularization**
 
-Although the modeling dataset contains only 1,095 observations, it was aggregated from 9,451,314 observations representing three complete years of ridership data. To ensure model stability and test for potential overfitting, the dataset was split into 70% training and 30% testing sets, with regularization applied including Ridge, Lasso, and Elastic Net.
+The modeling dataset contains 1,095 daily observations, aggregated from 9,451,314 trip-level records covering three complete years. The dataset was divided into 70% training and 30% testing sets.
 
-**4. Non-Liner Regression**
+Ridge, Lasso, and Elastic Net regularization were applied to evaluate coefficient stability, reduce potential overfitting, and compare out-of-sample predictive performance.
 
-The final step was to test for non-linear relationships. While the linear regression model provides a useful baseline, weather variables such as temperature may not have a strictly linear relationship with ridership. Additionally, the effect of weather conditions may differ between weekdays and weekends, potentially creating non-linear impacts on ridership. 
+**4. Quadratic and Interaction Effects**
 
-Quadratic and interaction regression models were therefore applied to capture these patterns. Specifically, the quadratic model squares all weather variables to identify potential peak points along the curve and to assess how ridership changes at these maximum or minimum points. The interaction model examines how temperature and precipitation vary with weekend status to estimate differences in slope, which reflects how ridership changes for each unit increase or decrease in temperature and precipitation on weekdays versus weekends.
+The final step extended the baseline linear model by examining curved relationships and interaction effects. Weather variables such as temperature may not have a strictly linear relationship with ridership. For example, ridership may increase as temperatures become warmer but decline once temperatures become excessively high.
+
+Quadratic terms were added for the weather variables to capture potential curvature and identify possible maximum or minimum points in their relationships with ridership. Any estimated turning point was interpreted only when it fell within the observed range of the data.
+
+Interaction terms between weekend status and temperature and precipitation were also included. These interactions tested whether the effects of temperature and precipitation differed between weekdays and weekends by estimating separate changes in slope for the two groups.
 
 
 ### Results
@@ -269,8 +285,7 @@ Quadratic and interaction regression models were therefore applied to capture th
 <img width="350" alt="LM" src="https://github.com/user-attachments/assets/6b6eab43-748d-4ff8-879c-c4e86085cfb9" />
 
 
-
-The multiple linear regression model explains 58.1% of the variation in daily trip counts (R² = 0.581, Adjusted R² = 0.579, n = 1,095), with all five independent variables statistically significant at the 1% level (p < 0.01). Among the weather variables, temperature has the strongest positive effect, with each one-degree increase associated with approximately 282 additional daily trips. Precipitation (-115), wind speed (-36), and cloud cover (-27) all negatively impact ridership. Weekends also have a substantial effect on ridership, with roughly 840 more trips compared to weekdays.
+The multiple linear regression model explains 58.1% of the variation in daily trip counts (R² = 0.581; adjusted R² = 0.579; n = 1,095). All five predictors are statistically significant at the 1% level (p < 0.01). Among the weather variables, temperature has the strongest positive association with ridership, with each one-degree increase associated with approximately 282 additional daily trips. In contrast, precipitation, wind speed, and cloud cover are associated with approximately 115, 36, and 27 fewer daily trips, respectively. Weekend days are associated with roughly 840 more trips than weekdays.
 
 
 **2.VIF**
@@ -279,8 +294,7 @@ The multiple linear regression model explains 58.1% of the variation in daily tr
 <img width="1300" alt="Screenshot 2026-03-23 at 7 18 49 PM" src="https://github.com/user-attachments/assets/cd14966b-dafd-4af7-86a5-53dfb3a8f4d9" />
 
 
-
-The VIF test confirms no multicollinearity issues, with all values close to 1 (range: 1.003 to 1.162). This indicates that each independent variable contributes unique information to the model, and the regression coefficients are reliable.
+The VIF results indicate no multicollinearity concerns, with all values close to 1 and ranging from 1.003 to 1.162. This suggests that the predictors provide largely distinct information and that the coefficient estimates are not substantially affected by multicollinearity.
 
 
 **3. Regularization**
@@ -288,29 +302,25 @@ The VIF test confirms no multicollinearity issues, with all values close to 1 (r
   - ***Comparison of Regularization Models***
 
 
-
 <img width="660" alt="regulation_model" src="https://github.com/user-attachments/assets/72095920-ca45-4688-9db8-cde36c2ae1ef" />
 
 
-
-I applied Ridge, Lasso, and Elastic Net Regularization models to test model stability. The plots show that no coefficients were shrunk to zero, and all variables remains stable with no major changes across the three regularization models. This confirms that all five independent variables contribute meaningfully to the model.
+Ridge, Lasso, and Elastic Net regularization were applied to assess coefficient stability. Across the three approaches, the coefficient paths followed similar directions and converged toward comparable values as the penalty weakened, suggesting that the relationships were generally stable across the models.
 
 
   - ***Comparison of MSEs***
 
 
-
 <img width="1300" alt="MSEs Comparison" src="https://github.com/user-attachments/assets/84d75057-f638-46eb-b374-6ac5cf622e78" />
 
 
-
-The comparison of MSEs shows that all models perform very similarly, with values ranging from 5,973,497 to 5,976,964. This confirms that the baseline linear regression model is stable and not overfitting, and that regularization does not substantially improve prediction.
-
-
-**4. Non-Liner Regression**
+The models produced nearly identical MSE values, ranging from 5,973,497 to 5,976,964. This indicates that regularization did not meaningfully improve predictive performance over the baseline linear regression model and provides additional evidence of model stability.
 
 
-  - ***Quadratic***
+**4. Quadratic and Interaction Effects**
+
+
+  - ***Quadratic Model***
 
 
 <img width="350" alt="quatric" src="https://github.com/user-attachments/assets/3890b249-ec96-44e6-8d00-7e998c571313" />
@@ -319,16 +329,14 @@ The comparison of MSEs shows that all models perform very similarly, with values
 <img width="330" alt="Peak" src="https://github.com/user-attachments/assets/382943b1-8c91-4593-ae0b-edaa29daaed9" />
 
 
+The quadratic regression model explains 65.1% of the variation in daily trip counts (R² = 0.651; adjusted R² = 0.648), improving upon the baseline linear regression model (R² = 0.581). The linear and squared terms for temperature, precipitation, and cloud cover are statistically significant at the 1% level (p < 0.01), while the wind-speed terms are not significant.
 
-The quadratic regression model explains 65.1% of the variation in daily trip counts (R² = 0.651), whic is an improvement compared the baseline linear regression (R² = 0.581). Among the squared weather variables, temperature, precipitation, and cloud cover are statistically significant at the 1% level (p < 0.01), while windspeed is not significant.
+Predicted ridership increases with temperature until reaching a maximum at approximately 25.7°C, after which it declines. Ridership decreases as precipitation increases until reaching a predicted minimum at approximately 37.7 mm; the slight increase beyond this point should be interpreted cautiously. Cloud cover is associated with a small increase in predicted ridership until approximately 34.4%, followed by a decline.
 
-Ridership increases with temperature up to a maximum of 25.677°C and decreases beyond this point, indicating that extreme heat likely reduces trips. Precipitation reduces ridership as rainfall rises. At approximately 37.656 mm, ridership reaches a minimum and rises slightly beyond this level, possibly reflecting the few riders who travel despite heavy rain. Cloud cover slightly increases ridership up to a peak at 34.445%, after that, ridership declines. The overall effect of cloud cover on trips remains minimal.
-
-Weekend remains a strong positive factor in this model, with approximately 840 more trips compared to weekdays.
+Weekend days are associated with approximately 896 additional daily trips compared with weekdays, holding the weather variables constant.
 
 
-  - ***Interaction***
-
+  - ***Interaction Model***
 
 
 <img width="350" alt="interaction" src="https://github.com/user-attachments/assets/5cb5bbdd-d875-4479-83ef-40b16bd2e978" />
@@ -338,19 +346,22 @@ Weekend remains a strong positive factor in this model, with approximately 840 m
 <img width="460" alt="slope" src="https://github.com/user-attachments/assets/3f26dfd9-604e-42ab-a3f2-190e3e12557f" />
 
 
+The interaction model explains 58.7% of the variation in daily trip counts (R² = 0.587; adjusted R² = 0.584), representing only a small improvement over the baseline model.
 
-The interaction regression model explains 58.7% of the variation in daily trip counts (R² = 0.587), a minimal improvement over the baseline linear regression (R² = 0.581). Interestingly, the weekend variable and the Weekend × Precipitation interaction term are not statistically significant in this model, even though the weekend variable was consistently significant in previous models. The remaining variables are statistically significant at the 1% level (p < 0.01).
+On weekdays, each one-degree increase in temperature is associated with approximately 262 additional trips. The Weekend × Temperature coefficient adds approximately 67 trips per degree, producing an estimated weekend slope of approximately 329 additional trips per degree.
 
-The Temp coefficient of 262.038 indicates that ridership increases by approximately 262 trips for every one-degree increase in temperature on weekdays. The Weekend × Temp interaction term shows that the slope for weekends is higher, with ridership increasing by about 328 trips per one-degree increase. This demonstrates that temperature has a stronger positive effect on ridership during weekends compared with weekdays.
+The Weekend × Precipitation interaction is not statistically significant, indicating insufficient evidence that precipitation affects ridership differently on weekends and weekdays.
 
-Since the interaction term Weekend × Precipitation is not statistically significant, which indicates that the effect of precipitation on ridership does not differ between weekdays and weekends. Therefore, no separate slope interpretation is necessary for this interaction
+Your turning-point calculations—25.677°C, 37.656 mm, and 34.445% cloud cover—are correct.
 
 
 ### Summary 
 
-Overall, the modeling analysis confirms that weather conditions, especially temperature, and weekend status are significant predictors of daily Capital Bikeshare ridership. Both the multiple linear and interaction regression models indicate that temperature and weekend status, individually and in combination, have a positive impact on ridership. The quadratic model further reveals that extreme heat beyond 25.677°C reduces ridership, while precipitation reaches its minimum impact at approximately 37.656mm, after which ridership increases slightly. 
+Overall, the modeling analysis indicates that weather conditions, particularly temperature and weekend status, are important predictors of daily Capital Bikeshare ridership. The baseline linear model shows positive associations between temperature, weekend status, and ridership, while the interaction model suggests that temperature has a stronger positive association with ridership on weekends than on weekdays.
 
-With the quadratic model achieving a higher R² (0.651) compared to the baseline linear regression (0.581), the relationship between weather conditions, weekend status, and daily trip counts appears to be non-linear. Nevertheless, the VIF diagnostics and regularization models confirm that the baseline linear regression remains stable, with no multicollinearity or overfitting detected.
+The quadratic model reveals curved relationships between several weather variables and ridership. Predicted ridership peaks at approximately 25.7°C and declines beyond this point. For precipitation, predicted ridership reaches a minimum at approximately 37.7 mm before increasing slightly, although this result should be interpreted cautiously due to the likely small number of extremely rainy days.
+
+The quadratic model explains more variation than the baseline linear model (R² = 0.651 versus 0.581), suggesting that some weather–ridership relationships are not strictly linear. VIF diagnostics show no multicollinearity concerns, while the similar test MSE values across the baseline and regularized models provide evidence that the baseline model is relatively stable and that regularization offers little improvement in predictive performance.
 
 
 
