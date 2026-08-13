@@ -43,7 +43,7 @@ The EDA focuses on answering the following questions:
 ### Who
 Based on aggregated trip data from 2021 to 2023, Capital Bikeshare members accounted for the majority of rides (60.5%), while casual riders accounted for 39.5%. This distribution remained relatively stable across the three years at approximately 60:40.
 
-According to Capital Bikeshare, the annual membership costs $120 per year and provides unlimited free bike unlocks with the first 45 minutes of classic bike rental at no charge. Given the annual commitment, members are likely local residents or frequent commuters who rely on Capital Bikeshare as part of their daily routine, rather than occasional visitors. The higher ridership among members also suggests that Capital Bikeshare functions as an essential transportation tool that complements other public transit options for short distance travel among local residents and commuters.
+Given the annual membership commitment, members are likely local residents or frequent commuters who rely on Capital Bikeshare as part of their daily routine rather than occasional visitors. The higher ridership among members also suggests that Capital Bikeshare functions as a regular transportation option that complements other public transit services for short-distance travel among local residents and commuters.
 
 <img width="530" alt="RIDER_MEMBERSHIP" src="https://github.com/user-attachments/assets/7c91fbcc-c415-43b2-b69a-d67437e59690" />
 
