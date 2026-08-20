@@ -244,9 +244,9 @@ Overall, trips at the top three pick-up stations on weekdays have steadily incre
 
 For modeling, this section examines whether daily bikeshare ridership is associated with weather conditions and weekend status, whether weather relationships are linear or curved, and whether these effects differ between weekdays and weekends. Multiple linear regression was used as the baseline model, quadratic terms were added to examine curved patterns, and interaction terms tested whether the effects of temperature and precipitation varied by weekend status. The trip-level data were aggregated into 1,095 daily observations (365 days × 3 years) from the 9,451,314 trips used in the EDA.
 
-### Varibles 
+### Variables 
 
-- **Dependent Variable:** total_trip
+- **Dependent Variable:** total_trips
 
 - **Independent Variables:** temp, precip, windspeed, cloudcover, weekend
 
@@ -256,7 +256,7 @@ For modeling, this section examines whether daily bikeshare ridership is associa
 
 The first step was to estimate a multiple linear regression model using daily trip counts (total_trips) as the dependent variable. The model examined how temperature, precipitation, wind speed, cloud cover, and weekend status were associated with daily ridership, whether these relationships were statistically significant, and how much variation in trip counts was explained by the selected predictors.
 
-**2.VIF**
+**2. Variance Inflation Factor (VIF)**
 
 The second step was to assess multicollinearity using the Variance Inflation Factor (VIF). Multicollinearity can occur when independent variables are strongly related, making individual coefficient estimates unstable or difficult to interpret.
 
@@ -274,12 +274,12 @@ The final step extended the baseline linear model by examining curved relationsh
 
 Quadratic terms were added for the weather variables to capture potential curvature and identify possible maximum or minimum points in their relationships with ridership. Any estimated turning point was interpreted only when it fell within the observed range of the data.
 
-Interaction terms between weekend status and temperature and precipitation were also included. These interactions tested whether the effects of temperature and precipitation differed between weekdays and weekends by estimating separate changes in slope for the two groups.
+Interaction terms between weekend status and both temperature and precipitation were also included. These interactions tested whether the effects of temperature and precipitation differed between weekdays and weekends by estimating separate changes in slope for the two groups.
 
 
 ### Results
 
-**1. Mutiple Linear Regression** 
+**1. Multiple Linear Regression** 
 
 
 <img width="350" alt="LM" src="https://github.com/user-attachments/assets/6b6eab43-748d-4ff8-879c-c4e86085cfb9" />
@@ -288,7 +288,7 @@ Interaction terms between weekend status and temperature and precipitation were 
 The multiple linear regression model explains 58.1% of the variation in daily trip counts (R² = 0.581; adjusted R² = 0.579; n = 1,095). All five predictors are statistically significant at the 1% level (p < 0.01). Among the weather variables, temperature has the strongest positive association with ridership, with each one-degree increase associated with approximately 282 additional daily trips. In contrast, precipitation, wind speed, and cloud cover are associated with approximately 115, 36, and 27 fewer daily trips, respectively. Weekend days are associated with roughly 840 more trips than weekdays.
 
 
-**2.VIF**
+**2. Variance Inflation Factor (VIF)**
 
 
 <img width="1300" alt="Screenshot 2026-03-23 at 7 18 49 PM" src="https://github.com/user-attachments/assets/cd14966b-dafd-4af7-86a5-53dfb3a8f4d9" />
@@ -331,7 +331,7 @@ The models produced nearly identical MSE values, ranging from 5,973,497 to 5,976
 
 The quadratic regression model explains 65.1% of the variation in daily trip counts (R² = 0.651; adjusted R² = 0.648), improving upon the baseline linear regression model (R² = 0.581). The linear and squared terms for temperature, precipitation, and cloud cover are statistically significant at the 1% level (p < 0.01), while the wind-speed terms are not significant.
 
-Predicted ridership increases with temperature until reaching a maximum at approximately 25.7°C, after which it declines. Ridership decreases as precipitation increases until reaching a predicted minimum at approximately 37.7 mm; the slight increase beyond this point should be interpreted cautiously. Cloud cover is associated with a small increase in predicted ridership until approximately 34.4%, followed by a decline.
+Predicted ridership increases with temperature until reaching a maximum at approximately 25.7°C, after which it declines. Ridership decreases as precipitation increases until reaching a predicted minimum at approximately 37.7 mm. The slight upward curve beyond this point is likely due to limited data on extreme rain days rather than actual ridership growth. Cloud cover is associated with a small increase in predicted ridership until approximately 34.4%, followed by a decline.
 
 Weekend days are associated with approximately 896 additional daily trips compared with weekdays, holding the weather variables constant.
 
@@ -348,18 +348,17 @@ Weekend days are associated with approximately 896 additional daily trips compar
 
 The interaction model explains 58.7% of the variation in daily trip counts (R² = 0.587; adjusted R² = 0.584), representing only a small improvement over the baseline model.
 
-On weekdays, each one-degree increase in temperature is associated with approximately 262 additional trips. The Weekend × Temperature coefficient adds approximately 67 trips per degree, producing an estimated weekend slope of approximately 329 additional trips per degree.
+On weekdays, each 1°C increase in temperature is associated with approximately 262 additional trips. The Weekend × Temperature coefficient adds approximately 67 trips per degree, producing an estimated weekend slope of approximately 329 additional trips per degree.
 
 The Weekend × Precipitation interaction is not statistically significant, indicating insufficient evidence that precipitation affects ridership differently on weekends and weekdays.
 
-Your turning-point calculations—25.677°C, 37.656 mm, and 34.445% cloud cover—are correct.
 
 
 ### Summary 
 
 Overall, the modeling analysis indicates that weather conditions, particularly temperature and weekend status, are important predictors of daily Capital Bikeshare ridership. The baseline linear model shows positive associations between temperature, weekend status, and ridership, while the interaction model suggests that temperature has a stronger positive association with ridership on weekends than on weekdays.
 
-The quadratic model reveals curved relationships between several weather variables and ridership. Predicted ridership peaks at approximately 25.7°C and declines beyond this point. For precipitation, predicted ridership reaches a minimum at approximately 37.7 mm before increasing slightly, although this result should be interpreted cautiously due to the likely small number of extremely rainy days.
+The quadratic model reveals curved relationships between several weather variables and ridership. Predicted ridership peaks at approximately 25.7°C and declines beyond this point. For precipitation, predicted ridership reaches a minimum at approximately 37.7 mm. While the curve bends slightly back up after this point, that is mainly due to the small number of extreme rain days rather than actual ridership growth during storms.
 
 The quadratic model explains more variation than the baseline linear model (R² = 0.651 versus 0.581), suggesting that some weather–ridership relationships are not strictly linear. VIF diagnostics show no multicollinearity concerns, while the similar test MSE values across the baseline and regularized models provide evidence that the baseline model is relatively stable and that regularization offers little improvement in predictive performance.
 
@@ -368,9 +367,9 @@ The quadratic model explains more variation than the baseline linear model (R² 
 ## Spatial Analysis (ArcGIS)
 
 
-The spatial analysis explores the geographic distribution of Capital Bikeshare ridership across Washington D.C. to identify spatial patterns across different membership types, times of day, and days of the week. The analysis is visualized through heatmaps generated in ArcGIS, where yellow dots indicate the highest demand stations by trip count.
+The spatial analysis explores the geographic distribution of Capital Bikeshare ridership across Washington, D.C., to identify spatial patterns across different membership types, times of day, and days of the week. The analysis is visualized through heatmaps generated in ArcGIS, where yellow dots indicate the highest-demand stations by trip count.
 
-All spatial visualizations were completed using ArcGIS Online, with aggregated station-level data including latitude and longitude coordinates imported from the EDA dataset. Multiple layers were added to each map to provide geographic context, including metro lines, metro stations, and the Washington D.C. administrative boundary.
+All spatial visualizations were completed using ArcGIS Online, with aggregated station-level data including latitude and longitude coordinates imported from the EDA dataset. Multiple layers were added to each map to provide geographic context, including Metro lines, Metro stations, and the Washington, D.C. administrative boundary.
 
 **Member vs. Casual**
 
@@ -379,7 +378,7 @@ All spatial visualizations were completed using ArcGIS Online, with aggregated s
 
 
 
-The map above shows the geographic distribution of the highest demand stations among member users. The heatmap indicates that the majority of member trips originated in residential and commercial districts in northern DC, above Massachusetts Ave and the K Street corridor. Specifically, the most intense ridership is concentrated between Connecticut Ave NW and 7th Street NW, shown in yellow on the map. Smaller hotspots are also visible around Union Station, Eastern Market, and Navy Yard. Overall, member trip start locations are distributed across DC but concentrated in the northern part of the city, reflecting a combination of employment centers and R-coded residential districts.
+The map above shows the geographic distribution of the highest-demand stations among member users. The heatmap indicates that the majority of member trips originated in residential and commercial districts in northern D.C., above Massachusetts Ave and the K Street corridor. Specifically, the most intense ridership is concentrated between Connecticut Ave NW and 7th Street NW, shown in yellow on the map. Smaller hotspots are also visible around Union Station, Eastern Market, and Navy Yard. Overall, member trip start locations are distributed across D.C. but concentrated in the northern part of the city, reflecting a combination of employment centers and R-coded residential districts.
 
 
 
@@ -388,7 +387,8 @@ The map above shows the geographic distribution of the highest demand stations a
 
 
 
-The map above presents the geographic distribution of the most preferred pick-up stations among casual users. Unlike member users, the heatmap shows a completely reversed distribution, with most intense hotspots concentrated within the National Mall, reflecting the tourism-based loop trip pattern identified in the EDA. The most intense demand is visually concentrated around the Lincoln Memorial, located at the western end of the National Mall. Strong hotspots are also found in the middle of the National Mall around the Washington Monument and Smithsonian Metro Station, which typically serve as the starting point for National Mall tours. Another hotspot is located at the eastern end of the National Mall, between Capitol Hill and the National Gallery of Art.
+The map above presents the geographic distribution of the most preferred pick-up stations among casual users. Unlike member users, the heatmap shows a completely reversed distribution, with the most intense hotspots concentrated within the National Mall, reflecting the tourism-based loop trip pattern identified in the EDA. The most intense demand is visually concentrated around the Lincoln Memorial, located at the western end of the National Mall. Strong hotspots are also found in the middle of the National Mall around the Washington Monument and Smithsonian Metro Station, which typically serve as the starting point for National Mall tours. Another hotspot is located at the eastern end of the National Mall, between Capitol Hill and the National Gallery of Art.
+
 
 **Weekday vs. Weekend**
 
@@ -396,14 +396,14 @@ The map above presents the geographic distribution of the most preferred pick-up
 <img width="600" alt="weekday" src="https://github.com/user-attachments/assets/8feec465-fdc9-4a50-b4e8-770277031aa7" />
 
 
-The map above presents the geographic distribution of the highest demand start stations during weekdays. The heatmap shows that hotspots are spread across DC, reflecting the combined ridership patterns of both member and casual users. Unlike the membership-specific maps, the weekday heatmap does not show a strong concentration in any single district, which indicates that both user groups actively use Capital Bikeshare throughout the week across different parts of the city. However, stronger hotspots are visually concentrated around the residential districts in northern DC and major transit hubs such as Dupont Circle and Union Station.
+The map above presents the geographic distribution of the highest-demand start stations during weekdays. The heatmap shows that hotspots are spread across D.C., reflecting the combined ridership patterns of both member and casual users. Unlike the membership-specific maps, the weekday heatmap does not show a strong concentration in any single district, which indicates that both user groups actively use Capital Bikeshare throughout the week across different parts of the city. However, stronger hotspots are visually concentrated around the residential districts in northern D.C. and major transit hubs such as Dupont Circle and Union Station.
 
 
 <img width="600" alt="weekend" src="https://github.com/user-attachments/assets/db2dee0c-396e-4ccf-baf6-d2134f2e0419" />
 
 
 
-The map above shows the geographic distribution of the most preferred pick-up stations during weekends. Compared to the weekday heatmap, the residential districts and transit hubs show lighter heat shades, suggesting a decline in commuting-based trips. In contrast, the hotspots around the National Mall intensify significantly on weekends, closely resembling the casual user heatmap, with strong concentration around the Lincoln Memorial, the Washington Monument, Smithsonian Metro Station, and the area between Capitol Hill and the National Gallery of Art. The weekend heatmap also confirms the EDA finding that weekend ridership is not purely tourism-based, as residential district hotspots remain visually noticeable, reflecting a mix of tourism and local leisure purposes.
+The map above shows the geographic distribution of the most preferred pick-up stations during weekends. Compared to the weekday heatmap, the residential districts and transit hubs show lighter heat shades, suggesting a decline in commuting-based trips. In contrast, the hotspots around the National Mall intensify significantly on weekends, closely resembling the casual user heatmap, with a strong concentration around the Lincoln Memorial, the Washington Monument, Smithsonian Metro Station, and the area between Capitol Hill and the National Gallery of Art. The weekend heatmap also confirms the EDA finding that weekend ridership is not purely tourism-based, as residential district hotspots remain visually noticeable, reflecting a mix of tourism and local leisure purposes.
 
 
 **Morning vs. Afternoon vs. Evening**
@@ -421,7 +421,7 @@ The map above shows the geographic distribution of the most preferred pick-up st
 
 
 
-Comparing the three major pick-up time windows, a clear shift is visible from commuting-oriented activity in the residential districts of northern DC during the morning to tourism-oriented activity around the National Mall during the afternoon. However, this does not mean that non-peak areas are inactive during off-peak hours. For example, the morning heatmap still shows light heat shades around the National Mall, and the afternoon heatmap confirms continued ride activity in northern DC. The night heatmap shows that overall bike activity gradually declines, but ridership remains visually noticeable around residential districts and metro stations.
+Comparing the three major pick-up time windows, a clear shift is visible from commuting-oriented activity in the residential districts of northern D.C. during the morning to tourism-oriented activity around the National Mall during the afternoon. However, this does not mean that non-peak areas are inactive during off-peak hours. For example, the morning heatmap still shows light heat shades around the National Mall, and the afternoon heatmap confirms continued ride activity in northern D.C. The night heatmap shows that overall bike activity gradually declines, but ridership remains visually noticeable around residential districts and Metro stations.
 
 
 
@@ -429,6 +429,6 @@ Comparing the three major pick-up time windows, a clear shift is visible from co
 
 The three-year Capital Bikeshare analysis clearly indicates a post-COVID-19 economic recovery, as ridership for both commuting and tourism/business purposes increased steadily over the three years. While a behavioral gap between member and casual users remains in terms of when and where they ride, both the EDA and spatial analysis confirm that this gap is narrowing: weekend ridership among member users is growing, and casual users are increasingly active on weekdays. However, this analysis raises further questions from both business and urban planning perspectives.
 
-From a business perspective, how can Capital Bikeshare maximize revenue from the growing e-bike ridership? While the discontinuation of docked bikes and the rise of e-bike usage present a potential revenue opportunity, given e-bikes carry a higher per-minute cost, the current data shows that classic bikes remain the dominant choice for both user groups. Therefore, adjustments to pricing strategies or collaboration with public transit agencies may be worth considering to encourage e-bike adoption among riders.
+From a business perspective, how can Capital Bikeshare maximize revenue from the growing e-bike ridership? While the discontinuation of docked bikes and the rise of e-bike usage present a potential revenue opportunity given their higher per-minute cost, the current data shows that classic bikes remain the dominant choice for both user groups. Therefore, adjustments to pricing strategies or collaboration with public transit agencies may be worth considering to encourage e-bike adoption among riders.
 
 From an urban planning perspective, incorporating bikeshare station expansion into pedestrian-friendly and mixed-use zoning districts could further encourage ridership. As bikeshare stations require permits and coordination with local transportation authorities, strategic placement in high-density residential and commercial zones, particularly in underserved areas, could help bridge the existing ridership gap across the city and possibly expand the bike-friendly zone.
