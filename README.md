@@ -1,4 +1,4 @@
-# Capital-Bikeshare-Ridership-Analysis(2021-2023)
+# Capital Bikeshare Ridership Analysis(2021-2023)
 An exploratory, spatial, and statistical analysis of Capital Bikeshare ridership patterns in Washington, D.C., using R and ArcGIS.
 
 ## Why This Project 
@@ -7,7 +7,7 @@ Washington, D.C., is honestly my favorite U.S. city. I visited the city for the 
 I was also impressed by how the transportation system connects Virginia through the Silver, Yellow, and Orange Lines and Maryland through the Red and Green Lines, supporting travel and economic activity across the region. For my first portfolio project, I chose to analyze Capital Bikeshare, a service I noticed but never had the chance to try during my visits to D.C.
 
 ## Data
-The data were sourced from Kaggle:[Capital Bikeshare Dataset 2020/05~2024/08](https://www.kaggle.com/datasets/taweilo/capital-bikeshare-dataset-202005202408/data). The source contains four datasets:
+The data were sourced from Kaggle: [Capital Bikeshare Dataset 2020/05~2024/08](https://www.kaggle.com/datasets/taweilo/capital-bikeshare-dataset-202005202408/data). The source contains four datasets:
 
   - Daily_Rent_Detail
   - Station_List
@@ -16,7 +16,7 @@ The data were sourced from Kaggle:[Capital Bikeshare Dataset 2020/05~2024/08](ht
 
 The primary dataset used in this analysis was **Daily_Rent_Detail**, which originally contained 16,086,672 trip records from May 2020 through August 2024. After removing invalid trips, including records with zero or missing values and trips lasting more than 24 hours based on Capital Bikeshare’s rental agreement, the data were restricted to the three complete years from 2021 to 2023. The final cleaned dataset contained 9,451,314 trips for exploratory data analysis.
 
-For EDA and modeling, the cleaned trip data were merged with the Weather dataset using temperature, precipitation, wind speed, and cloud cover. The following variables were also created:
+For EDA and modeling, the cleaned trip data were merged with the Weather dataset, incorporating variables including temperature, precipitation, wind speed, and cloud cover. The following variables were also created:
 - Trip duration in minutes
 - Pickup period: morning, afternoon, evening, or night
 - Return type: same-day or next-day
@@ -49,11 +49,11 @@ Given the annual membership commitment, members are likely local residents or fr
 
 
 ### What
-Over the three years, the classic bike was consistently the most preferred service among all users. However, there were some notable shifts in docked and electric bike (e-bike) usage. From 2021 to 2023, docked bike usage gradually decreased from 8.2% to 2.9%. In contrast, e-bike usage nearly doubled over the three years, increasing from 9.7% in 2021 to 20.8% in 2023.
+Over the three years, the classic bike was consistently the most preferred service among all users. However, there were some notable shifts in docked and electric bike (e-bike) usage. From 2021 to 2023, docked bike usage gradually decreased from 8.2% to 2.9%. In contrast, e-bike usage more than doubled over the three years, increasing from 9.7% in 2021 to 20.8% in 2023.
 
-For member users, docked bike recorded only one transaction in 2021 which was removed as an outlier, while e-bike usage grew steadily by approximately 10%. For casual users, docked bike usage declined as e-bike usage increased over the three years, which reflects the gradual replacement of docked bike service by e-bikes.
+For member users, docked bikes recorded only one transaction in 2021, which was removed as an outlier, while e-bike usage grew steadily by approximately 10%. For casual users, docked bike usage declined as e-bike usage increased over the three years, which reflects the gradual replacement of docked bike service by e-bikes.
 
-As of March 2026, Capital Bikeshare no longer lists docked bike as a rental service option. Comparing the cost of classic bikes and e-bikes, e-bikes are significantly more expensive for both member and casual users. For members, the annual membership includes the first 45 minutes of classic bike rental at no cost, while e-bike rides are charged at $0.15 per minute. For casual users, single rides cost $1 to unlock plus $0.15 per minute for classic bikes and $0.35 per minute for e-bikes. With a day pass ($10/day), casual users enjoy the same benefits as annual members: free unlocks, 45 minutes of free classic bike rental, and $0.15 per minute for e-bikes. Overall, the preference for classic bikes among both user types is likely to remain stable given the lower cost.
+As of March 2026, Capital Bikeshare no longer lists docked bikes as a rental service option. Comparing the cost of classic bikes and e-bikes, e-bikes are significantly more expensive for both member and casual users. For members, the annual membership includes the first 45 minutes of classic bike rental at no cost, while e-bike rides are charged at $0.15 per minute. For casual users, single rides cost $1 to unlock plus $0.15 per minute for classic bikes and $0.35 per minute for e-bikes. With a day pass ($10/day), casual users enjoy the same benefits as annual members: free unlocks, 45 minutes of free classic bike rental, and $0.15 per minute for e-bikes. Overall, the preference for classic bikes among both user types is likely to remain stable given the lower cost.
 
 
 <img width="530" alt="bike_type_composition by year" src="https://github.com/user-attachments/assets/efe5c75d-8b80-42ae-9a4b-b7ada05b75e4" />
@@ -67,9 +67,9 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
 
 - **Pick-up time**
   
-  In terms of peak pick-up window, member and casual users share some similarities. Both user groups are less likely to pick up bikes at night (9pm-       7am), with more than 85% of daily pick-ups occurring during daytime hours.
+  In terms of peak pick-up windows, member and casual users share some similarities. Both user groups are less likely to pick up bikes at night (9pm-7am), with more than 85% of daily pick-ups occurring during daytime hours.
   
-  For casual users, it is unsurprising that ridership peaks during the afternoon, accounting for 37.7% of total daily usage. Interestingly, the            expectation of higher morning ridership among member users does not hold true in this case. Morning pick-ups only contribute 26.6% of daily volume,      while afternoon (12pm-5pm) and evening (5pm-9pm) pick-ups account for 30.4% and 30.6% respectively. This suggests that members may not primarily use     Capital Bikeshare for morning commutes, but rather as a flexible transportation option for daily movement throughout the day.
+  For casual users, it is unsurprising that ridership peaks during the afternoon, accounting for 37.7% of total daily usage. For members, ridership is spread much more evenly across the day. While morning pick-ups (26.6%) are slightly lower than afternoon (30.4%) and evening (30.6%), the difference isn't huge. This suggests that members don't just rely on Capital Bikeshare for morning commutes, but use it as a flexible transportation option to get around the city all day long.
 
 <img width="600" alt="time_of_day" src="https://github.com/user-attachments/assets/c4afd050-da37-4206-b9f6-b80ad36b89a9" />
 
@@ -77,7 +77,7 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
 
 - **Weekday vs. Weekend**
   
-  Overall, the majority of trips occurred during weekdays, with a steady increase from 67% in 2021 to 71.6% in 2023. This growth may be partially driven   by the post-pandemic return-to-office trend, which likely increased demand for bike rental service during weekdays. Indeed, annual ridership saw a       significant increase over the three years, growing from 2,424,755 trips in 2021 to 3,812,138 trips in 2023, representing approximately 57.2% growth.     However, while member users experienced a modest 3% increase in weekday usage over the three years, casual users saw a 6% increase, nearly doubling      the growth rate of member users. This suggests that the rapid increase in bike rental usage on weekdays may not solely be attributed to the return-to-   office trend. The recovery of tourism and business travel to DC likely contributed as well, which reflects a broader post-pandemic economic recovery     in the capital.
+  Overall, the majority of trips occurred during weekdays, with a steady increase from 67% in 2021 to 71.6% in 2023. This growth may be partially driven by the post-pandemic return-to-office trend, which likely increased demand for bike rentals during weekdays. Indeed, annual ridership saw a significant increase over the three years, growing from 2,424,755 trips in 2021 to 3,812,138 trips in 2023, representing approximately 57.2% growth. However, while member users experienced a modest 3% increase in weekday usage over the three years, casual users saw a 6% increase, nearly doubling the growth rate of member users. This suggests that the rapid increase in bike rental usage on weekdays may not solely be attributed to the return-to-office trend. The recovery of tourism and business travel to D.C. likely contributed as well, which reflects a broader post-pandemic economic recovery in the capital.
 
 
 <img width="530" alt="trip_weekend_weekday" src="https://github.com/user-attachments/assets/72741d4a-30c4-468a-be48-2eab3552ed72" />
@@ -86,11 +86,11 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
 
 - **Month**
   
-  As a visitor attending the National Cherry Blossom Festival in late March and early April, I noticed many people biking around the National Mall and     the Tidal Basin. Surprisingly, peak ridership does not occur during the blooming period, but instead during the summer and early fall.
+  As a visitor attending the National Cherry Blossom Festival in late March and early April, I noticed many people biking around the National Mall and the Tidal Basin. Surprisingly, peak ridership does not occur during the blooming period, but instead during the summer and early fall.
 
-  In 2023, July, August, and October recorded the highest ridership of the year, each exceeding 400,000 trips per month. In 2022, peak ridership           occurred between June and September, with each month surpassing 350,000 trips. In 2021, October was the only month to reach peak ridership, with over    300,000 trips. Across all three years, July stands out as the busiest month overall, which indicates a stable seasonal peak in mid-summer.
+  In 2023, July, August, and October recorded the highest ridership of the year, each exceeding 400,000 trips per month. In 2022, peak ridership occurred between June and September, with each month surpassing 350,000 trips. In 2021, October was the only month to reach peak ridership, with over 300,000 trips. Across all three years, July stands out as the busiest month overall, which indicates a stable seasonal peak in mid-summer.
 
-  For member users, September and October were the busiest months, likely associated with DC’s active fall professional and conference season. For         casual users, July was consistently the busiest month, with ridership peaking across all three years, likely reflecting the increase in visitors         for Independence Day celebrations.
+  For member users, September and October were the busiest months, likely associated with D.C.’s active fall professional and conference season. For casual users, July was consistently the busiest month, with ridership peaking across all three years, likely reflecting the increase in visitors for Independence Day celebrations.
 
 
 
@@ -108,13 +108,13 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
 
 - **Member**
   
-  Combining all rideable types, the top 3 pick-up stations for member users were ***"New Hampshire Ave & T St NW"***, ***"15th & P St NW"***, and          ***"Columbus Circle / Union Station"***, each averaging around 70,000 pick-ups over the three years.
+  Combining all rideable types, the top 3 pick-up stations for member users were ***"New Hampshire Ave & T St NW"***, ***"15th & P St NW"***, and ***"Columbus Circle / Union Station"***, each averaging around 70,000 pick-ups over the three years.
   
-  Here are the top 3 drop-off stations regardless of rideable type with over 1,000 trips for each high demand starting station:
+  Here are the top 3 drop-off stations regardless of rideable type with over 1,000 trips for each high-demand starting station:
 
   - ***New Hampshire Ave & T St NW*** 
 
-    According to the DC official zoning map, "New Hampshire Ave & T St NW" is located in the RA-4 district, zoned for residential apartments and             surrounded by other RA-coded districts. Here are the top drop-off stations with over 1,000 drop-offs from "New Hampshire Ave & T St NW" by pick-up       time window:
+    According to the DC official zoning map, "New Hampshire Ave & T St NW" is located in the RA-4 district, zoned for residential apartments and surrounded by other RA-coded districts. Here are the top drop-off stations with over 1,000 drop-offs from "New Hampshire Ave & T St NW" by pick-up time window:
     
     Morning: 17th & K St NW / 18th & New Hampshire Ave NW
     
@@ -122,14 +122,14 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
     
     Evening: 15th & P St NW / 17th & Corcoran St NW
 
-    For morning riders, the trip purpose is likely work-related. All morning top drop-off stations are located close to major employment centers and         transit hubs. The K Street corridor is known for its concentration of firms and offices, within walking distance of Farragut Square Metro station.       "18th Street NW" is a mixed-use district located with office buildings and embassies, also just a few blocks away from Dupont Circle.
+    For morning riders, the trip purpose is likely work-related. All morning top drop-off stations are located close to major employment centers and transit hubs. The K Street corridor is known for its concentration of firms and offices, within walking distance of Farragut Square Metro station. "18th Street NW" is a mixed-use district with office buildings and embassies, also just a few blocks away from Dupont Circle.
 
-    During afternoon and evening hours, the trip purpose appears to shift from commuting to leisure and errands. "17th & Corcoran St NW" is located in a     mixed-use zone with grocery stores including Whole Foods and numerous restaurants. "15th & P St NW" is situated in the ARTS-3 Special Purpose Zone       designed to promote arts, entertainment, and retail uses with an emphasis on 18-hour pedestrian activity, according to DC zoning regulations.
+    During afternoon and evening hours, the trip purpose appears to shift from commuting to leisure and errands. "17th & Corcoran St NW" is located in a mixed-use zone with grocery stores including Whole Foods and numerous restaurants. "15th & P St NW" is situated in the ARTS-3 Special Purpose Zone designed to promote arts, entertainment, and retail uses with an emphasis on 18-hour pedestrian activity, according to D.C. zoning regulations.
     
 
   - ***15th & P St NW***
 
-    As mentioned above, "15th & P St NW" is located in the ARTS-3 Special Purpose Zone, adjacent to a large RA-coded residential neighborhood and a          mixed-use district. The ARTS-3 zone is specifically designed to promote pedestrian-friendly development, which naturally discourages car ownership       among residents. In other words, the surrounding area has a high concentration of residents who are likely to rely on bikes and public transit for       both leisure and daily commuting purposes. Here are the top stations with over 1,000 drop-offs from "15th & P St NW" by pick-up time window:
+    As mentioned above, "15th & P St NW" is located in the ARTS-3 Special Purpose Zone, adjacent to a large RA-coded residential neighborhood and a mixed-use district. The ARTS-3 zone is specifically designed to promote pedestrian-friendly development, which naturally discourages car ownership among residents. In other words, the surrounding area has a high concentration of residents who are likely to rely on bikes and public transit for both leisure and daily commuting purposes. Here are the top stations with over 1,000 drop-offs from "15th & P St NW" by pick-up time window:
 
     Morning: Massachusetts Ave & Dupont Circle
     
@@ -137,27 +137,27 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
     
     Evening: New Hampshire Ave & T St NW / 15th & W St NW
 
-    As expected, morning riders appear to bike to work, as "Massachusetts Ave & Dupont Circle NW" is located in a dense office area within walking           distance of Dupont Circle Metro station. For afternoon and evening riders, it is interesting to note that "New Hampshire Ave & T St NW", previously      identified as a residential zone and the top pick-up station for member users, now appears as a top drop-off station, which suggests that the riders     may be heading home after work or running errands. Additionally, "15th & W St NW", a high drop-off station during evening hours, is located on the       edge of Downtown DC, which suggests the riders may be heading there for dining and nightlife purposes.
+    As expected, morning riders appear to bike to work, as "Massachusetts Ave & Dupont Circle NW" is located in a dense office area within walking distance of Dupont Circle Metro station. For afternoon and evening riders, it is interesting to note that "New Hampshire Ave & T St NW", previously identified as a residential zone and the top pick-up station for member users, now appears as a top drop-off station, which suggests that the riders may be heading home after work or running errands. Additionally, "15th & W St NW", a high drop-off station during evening hours, is located on the edge of Downtown D.C., which suggests the riders may be heading there for dining and nightlife purposes.
 
 
   - ***Columbus Circle / Union Station***
   
-    "Columbus Circle / Union Station" is distinct from "New Hampshire Ave & T St NW" and "15th & P St NW", which are zoned for residential and mixed-use     districts. As one of DC's largest transit hubs serving Amtrak, Metro, and bus routes, its high ridership is naturally expected.
+    "Columbus Circle / Union Station" is distinct from "New Hampshire Ave & T St NW" and "15th & P St NW", which are zoned for residential and mixed-use districts. As one of D.C.'s largest transit hubs serving Amtrak, Metro, and bus routes, its high ridership is naturally expected.
     
-    Here are the top stations over 1,000 drop-offs from "Columbus Circle/Union Station" by pick-up time window:
+    Here are the top stations with over 1,000 drop-offs from "Columbus Circle / Union Station" by pick-up time window:
 
-    Morning: 4th & M St SE / 3rd & M st SE
+    Morning: 4th & M St SE / 3rd & M St SE
     
     Afternoon: 8th & F St NE / 6th & H St NE
     
     Evening: 6th & H St NE / 8th & F St NE / Maryland Ave & E St NE 
 
-    Interestingly, the top morning drop-off destinations are concentrated in the Navy Yard and Southeast Federal Center (SEFC) zones, a high-density         mixed-use waterfront district, which suggests that morning riders are likely federal employees or government contractors commuting to nearby             offices. For afternoon and evening riders, drop-off stations shift to RF (Residential Flat) and Neighborhood Mixed-Use zones, with a portion of          evening rides ending at the National Arboretum, which indicates that riders may be heading home or enjoying outdoor leisure activities after work.
+    Interestingly, the top morning drop-off destinations are concentrated in the Navy Yard and Southeast Federal Center (SEFC) zones, a high-density mixed-use waterfront district, which suggests that morning riders are likely federal employees or government contractors commuting to nearby offices. For afternoon and evening riders, drop-off stations shift to RF (Residential Flat) and Neighborhood Mixed-Use zones, with a portion of evening rides ending at the National Arboretum, which indicates that riders may be heading home or enjoying outdoor leisure activities after work.
 
 
 - **Casual**
   
-  For casual users, unsurprisingly, the highest demand stations are located along the National Mall: ***"Lincoln Memorial"***, ***"Jefferson Dr & 14th     St SW"***, and ***"Henry Bacon Dr & Lincoln Memorial Circle NW"***, each recording over 60,000 pick-ups over the three years.
+  For casual users, unsurprisingly, the highest demand stations are located along the National Mall: ***"Lincoln Memorial"***, ***"Jefferson Dr & 14th St SW"***, and ***"Henry Bacon Dr & Lincoln Memorial Circle NW"***, each recording over 60,000 pick-ups over the three years.
 
 
   Here are the top 3 drop-off stations regardless of rideable type with over 1,000 trips for each high demand starting station:
@@ -191,7 +191,7 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
     Night: Henry Bacon Dr & Lincoln Memorial Circle NW
 
 
-    Unlike member users who demonstrate diverse destinations for both work and leisure, casual users appear to bike exclusively for                          sightseeing, consistently riding in a loop pattern between the same or nearby stations around the National Mall.
+    Unlike member users who demonstrate diverse destinations for both work and leisure, casual users appear to bike exclusively for sightseeing, consistently riding in a loop pattern between the same or nearby stations around the National Mall.
 
 
 <img width="600" alt="top3_pickup_location" src="https://github.com/user-attachments/assets/00bb6527-6545-4cd6-8094-cb754e201cc8" />
@@ -201,7 +201,7 @@ As of March 2026, Capital Bikeshare no longer lists docked bike as a rental serv
 
 - **Weekday vs. Weekend**
   
-Overall, trips at the top three pick-up stations on weekdays have steadily increased over the three years, while weekend trips have remained relatively stable. For weekday trips, the top pick-up stations align with the highest demand stations for member users, which confirms that the primary weekday riders are members and supports the return-to-office trend discussed above. For weekend trips, the highest demand stations shifted from visitor-oriented locations around the National Mall in 2021-2022 to a mix of tourism sites and R-coded residential neighborhoods by 2023. This suggests a potential increase in weekend bike rental demand among member users over time.
+Overall, trips at the top three pick-up stations on weekdays have steadily increased over the three years, while weekend trips have remained relatively stable. For weekday trips, the top pick-up stations align with the highest-demand stations for member users, which confirms that the primary weekday riders are members and supports the return-to-office trend discussed above. For weekend trips, the highest-demand stations shifted from visitor-oriented locations around the National Mall in 2021-2022 to a mix of tourism sites and R-coded residential neighborhoods by 2023. This suggests a potential increase in weekend bike rental demand among member users over time.
 
 
 
@@ -210,13 +210,13 @@ Overall, trips at the top three pick-up stations on weekdays have steadily incre
 
 
 
-## How
+### How
 
-- **Trip Duration(minutes)**
+- **Trip Duration (minutes)**
 
-  In terms of trip duration, member and casual users exhibit different usage patterns. Member users tend to keep trips around 10 minutes. Specifically,    classic bike trips typically last under 10 minutes, while e-bike trips are slightly longer, with median durations exceeding 10 minutes during the        afternoon and evening.
+  In terms of trip duration, member and casual users exhibit different usage patterns. Member users tend to keep trips around 10 minutes. Specifically, classic bike trips typically last under 10 minutes, while e-bike trips are slightly longer, with median durations exceeding 10 minutes during the afternoon and evening.
 
-  In contrast, casual users spend more time on bikes, with median trip durations exceeding 10 minutes across all rideable types. Docked bikes recorded     the longest median durations, ranging from 23 to 33 minutes, likely because they must be returned to a designated station. Meanwhile, casual users’      classic bike trips range from 13 to 18 minutes, while e-bike trips range from 11 to 13 minutes, both longer than the typical member user trip
+  In contrast, casual users spend more time on bikes, with median trip durations exceeding 10 minutes across all rideable types. Docked bikes recorded the longest median durations, ranging from 23 to 33 minutes, likely because they must be returned to a designated station. Meanwhile, casual users’ classic bike trips range from 13 to 18 minutes, while e-bike trips range from 11 to 13 minutes, both longer than the typical member user trip.
 
 
 <img width="600" alt="median_trip_duration_pickup_bike_type" src="https://github.com/user-attachments/assets/8637d582-2e87-4d4d-b5be-da1a793ddf35" />
@@ -226,7 +226,7 @@ Overall, trips at the top three pick-up stations on weekdays have steadily incre
 
  - **Trip Pattern**
 
-   As all trips in this analysis are valid and do not exceed the 24-hour rental limit, 99% of bikes were returned on the same day for both user groups.     However, casual users are more likely to make round-trips, with 9% of trips ending at the same station where the bike was picked up. Member users, by    contrast, are far less likely to return to the pick-up station, with only 2.3% of trips being round-trips. These trip patterns reinforce the earlier     finding that member users primarily take point-to-point trips, while casual users tend to make loop-based trips for sightseeing purposes
+   As all trips in this analysis are valid and do not exceed the 24-hour rental limit, 99% of bikes were returned on the same day for both user groups. However, casual users are more likely to make round-trips, with 9% of trips ending at the same station where the bike was picked up. Member users, by contrast, are far less likely to return to the pick-up station, with only 2.3% of trips being round-trips. These trip patterns reinforce the earlier finding that member users primarily take point-to-point trips, while casual users tend to make loop-based trips for sightseeing purposes.
 
 
 
