@@ -1,10 +1,27 @@
 # Capital Bikeshare Ridership Analysis(2021-2023)
 An exploratory, spatial, and statistical analysis of Capital Bikeshare ridership patterns in Washington, D.C., using R and ArcGIS.
 
-## Why This Project 
+### Why This Project 
 Washington, D.C., is honestly my favorite U.S. city. I visited the city for the National Cherry Blossom Festival two years in a row, and what impressed me was not only the scenery but also its transit accessibility. After living in the United States for a decade, D.C. was the first city where I could take the Metro directly to my hotel with my luggage and explore the city and surrounding neighborhoods without relying on Uber.
 
 I was also impressed by how the transportation system connects Virginia through the Silver, Yellow, and Orange Lines and Maryland through the Red and Green Lines, supporting travel and economic activity across the region. For my first portfolio project, I chose to analyze Capital Bikeshare, a service I noticed but never had the chance to try during my visits to D.C.
+
+
+### Technical Highlights 
+* Wrangled 16,086,672 raw Capital Bikeshare trip records down to an analytical dataset of 9,451,314 rides across three complete years (2021–2023) by filtering invalid durations and applying the 24-hour rental agreement limit.
+
+* Merged trip-level data with historical weather records (temperature, precipitation, wind speed, cloud cover) and engineered temporal features (pickup time windows, trip duration, same-day vs. next-day return, one-way vs. round-trip).
+
+* Estimated multiple linear regression, quadratic regression, and interaction models on 1,095 aggregated daily observations, testing coefficient stability and out-of-sample performance across Ridge, Lasso, and Elastic Net regularization.
+
+
+
+
+### Key Findings
+
+
+--- 
+
 
 ## Data
 The data were sourced from Kaggle: [Capital Bikeshare Dataset 2020/05~2024/08](https://www.kaggle.com/datasets/taweilo/capital-bikeshare-dataset-202005202408/data). The source contains four datasets:
