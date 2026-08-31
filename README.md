@@ -14,6 +14,8 @@ I was also impressed by how the transportation system connects Virginia through 
   
 * Aggregated trips into 1,095 daily observations to estimate multiple linear regression, quadratic, and interaction models, testing coefficient stability across Ridge, Lasso, and Elastic Net regularization.
   
+* Created spatial heatmaps in ArcGIS Online overlaid with D.C. Metro lines, Metro stations, and city boundaries to visualize ridership hotspots across user types, weekdays vs. weekends, and time-of-day periods.
+
 
 ### Key Findings
 * **Commuter Corridors vs. Sightseeing Loops:** Members (60.5% of rides) use bikeshare for short, point-to-point utility trips (averaging under 10 minutes) connecting residential zones to employment hubs like K Street and Navy Yard. In contrast, casual riders use the service for leisure, riding longer durations in loop patterns around the National Mall.
