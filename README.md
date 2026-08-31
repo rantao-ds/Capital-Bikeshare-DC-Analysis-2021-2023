@@ -10,14 +10,17 @@ I was also impressed by how the transportation system connects Virginia through 
 ### Technical Highlights 
 * Wrangled 16,086,672 raw Capital Bikeshare trip records down to an analytical dataset of 9,451,314 rides across three complete years (2021–2023) by filtering invalid durations and applying the 24-hour rental agreement limit.
 
-* Merged trip-level data with historical weather records (temperature, precipitation, wind speed, cloud cover) and engineered temporal features (pickup time windows, trip duration, same-day vs. next-day return, one-way vs. round-trip).
-
-* Estimated multiple linear regression, quadratic regression, and interaction models on 1,095 aggregated daily observations, testing coefficient stability and out-of-sample performance across Ridge, Lasso, and Elastic Net regularization.
-
-
-
+* Merged 9.45 million individual trip records with local daily weather data, engineering calendar features (weekend status, month) and trip behaviors (pickup periods like morning/afternoon/evening/night, duration in minutes, return type, one-way vs. round-trip patterns) for exploratory analysis.
+  
+* Aggregated trips into 1,095 daily observations to estimate multiple linear regression, quadratic, and interaction models, testing coefficient stability across Ridge, Lasso, and Elastic Net regularization.
+  
 
 ### Key Findings
+* **Commuter Corridors vs. Sightseeing Loops:** Members (60.5% of rides) use bikeshare for short, point-to-point utility trips (averaging under 10 minutes) connecting residential zones to employment hubs like K Street and Navy Yard. In contrast, casual riders use the service for leisure, riding longer durations in loop patterns around the National Mall.
+
+* **Non-Linear Weather Response:** Quadratic regression modeling (R² = 0.651) proves that weather relationships are curved rather than strictly linear. Daily ridership increases with temperature until reaching an optimal peak at 25.7°C (78°F), after which extreme summer heat and rainfall suppress riding demand.
+
+* **Post-Pandemic Demand Recovery:** Total annual ridership grew by 57.2% between 2021 and 2023. Weekday casual ridership growth doubled member growth, reflecting a strong recovery in business travel and regional tourism alongside the return-to-office trend.
 
 
 --- 
