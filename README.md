@@ -14,7 +14,7 @@ I was also impressed by how the transportation system connects Virginia through 
   
 * Aggregated trips into 1,095 daily observations to estimate multiple linear regression, quadratic, and interaction models. Tested coefficient stability across Ridge, Lasso, and Elastic Net regularization.
     
-* Created spatial heatmaps overlaid with D.C. Metro lines, Metro stations, and city boundaries. Visualized ridership hotspots across user types, weekdays versus weekends, and pickup windows.
+* Created spatial heatmaps in ArcGIS Online overlaid with D.C. Metro lines, Metro stations, and city boundaries to visualize ridership hotspots across user types, weekdays versus weekends, and pickup windows.
   
 
 ### Key Findings
