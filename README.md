@@ -18,8 +18,8 @@ I was also impressed by how the transportation system connects Virginia through 
   
 
 ### Key Findings
-* **Commuter Corridors vs. Sightseeing Loops:** Members (60.5% of rides) use bikeshare for short, point-to-point utility trips (averaging under 10 minutes) connecting residential zones to employment hubs like K Street and Navy Yard. In contrast, casual riders use the service for leisure, riding longer durations in loop patterns around the National Mall.
-
+* **Commuter Corridors vs. Sightseeing Loops:** Members (60.5% of rides) use bikeshare for daily transportation, primarily taking short point-to-point trips (averaging under 10 minutes) that connect residential neighborhoods to employment hubs like K Street and Navy Yard. In contrast, casual riders use the service for leisure, riding longer durations in loop patterns around the National Mall.
+  
 * **Non-Linear Weather Response:** Quadratic regression modeling (R² = 0.651) proves that weather relationships are curved rather than strictly linear. Daily ridership increases with temperature until reaching an optimal peak at 25.7°C (78°F), after which extreme summer heat and rainfall suppress riding demand.
 
 * **Post-Pandemic Demand Recovery:** Total annual ridership grew by 57.2% between 2021 and 2023. Weekday casual ridership growth doubled member growth, reflecting a strong recovery in business travel and regional tourism alongside the return-to-office trend.
