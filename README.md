@@ -10,12 +10,12 @@ I was also impressed by how the transportation system connects Virginia through 
 ### Technical Highlights 
 * Wrangled 16,086,672 raw Capital Bikeshare trip records down to an analytical dataset of 9,451,314 rides across three complete years (2021–2023) by filtering invalid durations and applying the 24-hour rental agreement limit.
 
-* Merged 9.45 million individual trip records with local daily weather data, engineering calendar features (weekend status, month) and trip behaviors (pickup periods like morning/afternoon/evening/night, duration in minutes, return type, one-way vs. round-trip patterns) for exploratory analysis.
+* Merged 9.45 million individual trip records with local daily weather data. Engineered calendar features (weekend status, month) and trip behavioral features (pickup windows, duration, return and trip patterns) for exploratory analysis.
   
-* Aggregated trips into 1,095 daily observations to estimate multiple linear regression, quadratic, and interaction models, testing coefficient stability across Ridge, Lasso, and Elastic Net regularization.
+* Aggregated trips into 1,095 daily observations to estimate multiple linear regression, quadratic, and interaction models. Tested coefficient stability across Ridge, Lasso, and Elastic Net regularization.
+    
+* Created spatial heatmaps overlaid with D.C. Metro lines, Metro stations, and city boundaries. Visualized ridership hotspots across user types, weekdays versus weekends, and pickup windows.
   
-* Created spatial heatmaps in ArcGIS Online overlaid with D.C. Metro lines, Metro stations, and city boundaries to visualize ridership hotspots across user types, weekdays vs. weekends, and time-of-day periods.
-
 
 ### Key Findings
 * **Commuter Corridors vs. Sightseeing Loops:** Members (60.5% of rides) use bikeshare for short, point-to-point utility trips (averaging under 10 minutes) connecting residential zones to employment hubs like K Street and Navy Yard. In contrast, casual riders use the service for leisure, riding longer durations in loop patterns around the National Mall.
