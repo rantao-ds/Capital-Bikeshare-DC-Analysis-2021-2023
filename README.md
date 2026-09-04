@@ -2,7 +2,7 @@
 An exploratory, spatial, and statistical analysis of Capital Bikeshare ridership patterns in Washington, D.C., using R and ArcGIS.
 
 ### Why This Project 
-Washington, D.C., is honestly my favorite U.S. city. I visited the city for the National Cherry Blossom Festival two years in a row, and what impressed me was not only the scenery but also its transit accessibility. After living in the United States for a decade, D.C. was the first city where I could take the Metro directly to my hotel with my luggage and explore the city and surrounding neighborhoods without relying on Uber.
+Washington, D.C., is honestly my favorite U.S. city. I visited the city for the National Cherry Blossom Festival two years in a row, and what impressed me was not only the scenery but also its transit accessibility. After living in the United States for a decade, D.C. was the first city where I could take the Metro directly to the hotel with my luggage and explore the city and surrounding neighborhoods without relying on Uber.
 
 I was also impressed by how the transportation system connects Virginia through the Silver, Yellow, and Orange Lines and Maryland through the Red and Green Lines, supporting travel and economic activity across the region. For my first portfolio project, I chose to analyze Capital Bikeshare, a service I noticed but never had the chance to try during my visits to D.C.
 
